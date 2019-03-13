@@ -1,7 +1,7 @@
-import React from 'react';
-import TodoItem from './TodoItem'
+import React, { Component, Fragment } from 'react';
+import TodoItem from './TodoItem';
 
-class TodoList extends React.Component {
+class TodoList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,6 +12,9 @@ class TodoList extends React.Component {
       ],
       inputValue: ''
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
   }
 
   handleBtnClick() {
@@ -25,9 +28,9 @@ class TodoList extends React.Component {
     this.setState({
       inputValue: e.target.value
     })
-  } 
+  }
 
-  handleItemClick(index) {
+  handleDeleteItem(index) {
     let list = [...this.state.list]
     list.splice(index, 1)
     this.setState({
@@ -35,22 +38,29 @@ class TodoList extends React.Component {
     })
   }
 
-  render() {
+  getListContent() {
     return (
-      <div className="TodoList">
+      this.state.list.map((item,index) => {
+        return <TodoItem 
+                key={index} 
+                content={item} 
+                index={index} 
+                delete={this.handleDeleteItem}>
+                </TodoItem>
+      })
+    )
+  }
+
+  render() {
+    const { inputValue } = this.state;
+    return (
+      <Fragment>
         <div>
-          <input value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}></input>
-          <button onClick={this.handleBtnClick.bind(this)}>点击</button>
+          <input value={inputValue} onChange={this.handleInputChange}></input>
+          <button className='red-btn' onClick={this.handleBtnClick}>点击</button>
         </div>
-        <ul>
-          {
-            this.state.list.map((item,index) => {
-              return <TodoItem key={index} content={item}></TodoItem>
-              // return <li key={index} onClick={this.handleItemClick.bind(this, index)}>{item}</li>
-            })
-          }
-        </ul>
-      </div>
+        <ul>{this.getListContent()}</ul>
+      </Fragment>
     );
   }
 }

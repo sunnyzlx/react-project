@@ -1,14 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../Header';
 import OrderList from '../OrderList';
+import { GlobalStyle } from '../../style'
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <div>App</div>
-        <Header></Header>
-        <OrderList></OrderList>
+        <GlobalStyle/>
+          <Header></Header>
+          <OrderList></OrderList>
       </Fragment> 
     );
   }

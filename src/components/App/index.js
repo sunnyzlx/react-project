@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <Fragment>
         <GlobalStyle/>
-          <Header></Header>
-          <OrderList></OrderList>
+            <Header></Header>
+            <OrderList></OrderList>
       </Fragment> 
     );
   }

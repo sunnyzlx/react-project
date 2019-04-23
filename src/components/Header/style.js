@@ -54,24 +54,6 @@ export const SearchWrapper = styled.div`
     }
   }
 
-  .slide-enter {
-    width: 160px;
-    transition: width .2s ease-out;
-  } 
-
-  .slide-enter-active {
-    width: 260px; 
-  }
-
-  .slide-exit {
-    width: 260px;
-    transition: width .2s ease-out;    
-  }
-
-  .slide-exit-active {
-    width: 160px; 
-  }
-
 `
 
 export const NavSearch = styled.input.attrs({
@@ -95,6 +77,24 @@ export const NavSearch = styled.input.attrs({
   &.focused {
     width: 260px;
   }
+  &.slide-enter {
+    width: 160px;
+    transition: width .2s ease-out;
+  } 
+
+  &.slide-enter-active {
+    width: 260px; 
+  }
+
+  &.slide-exit {
+    width: 260px;
+    transition: width .2s ease-out;    
+  }
+
+  &.slide-exit-active {
+    width: 160px; 
+  }
+
 `
 
 export const Addition = styled.div`

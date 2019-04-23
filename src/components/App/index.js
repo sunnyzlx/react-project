@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../Header';
-import OrderList from '../OrderList';
 import { GlobalStyle } from '../../style'
 
 class App extends Component {
@@ -9,7 +8,6 @@ class App extends Component {
       <Fragment>
         <GlobalStyle/>
             <Header></Header>
-            <OrderList></OrderList>
       </Fragment> 
     );
   }

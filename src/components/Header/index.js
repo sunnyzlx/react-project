@@ -10,14 +10,17 @@ import { actionCreators } from './store'
 
 class Header extends Component {
   getListArea() {
-    if (this.props.focused) {
+
+    // 使用解构赋值使代码更整洁
+    const { focused, list } = this.props;
+    if (focused) {
       return (
         <SearchInfo>
             <SearchInfoTitle>热门搜索
               <SearchInfoSwitch>换一批</SearchInfoSwitch>
             </SearchInfoTitle>
             <SearchInfoList>
-              { this.props.list.map((item) => {
+              { list.map((item) => {
                 return (<SearchInfoItem key={item}>{item}</SearchInfoItem>)
               })}  
             </SearchInfoList>
@@ -29,6 +32,7 @@ class Header extends Component {
   }
 
   render() {
+    const { focused, handleInputFocus, handleInputBlur} = this.props;
     return(
       <HeaderWrapper>
       <Logo></Logo>
@@ -37,16 +41,16 @@ class Header extends Component {
         <NavItem className="left">下载App</NavItem> 
         <SearchWrapper>
           <CSSTransition
-            in={this.props.focused}
+            in={focused}
             timeout={200}
             classNames="slide"
           >
-            <NavSearch className={this.props.focused ? 'focused' : ''}
-              onFocus={this.props.handleInputFocus}
-              onBlur={this.props.handleInputBlur}
+            <NavSearch className={focused ? 'focused' : ''}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
             ></NavSearch> 
           </CSSTransition> 
-          <Icon className={this.props.focused ? 'focused iconfont iconfangdajing' : 'iconfont iconfangdajing'}></Icon> 
+          <Icon className={focused ? 'focused iconfont iconfangdajing' : 'iconfont iconfangdajing'}></Icon> 
           {this.getListArea()}
         </SearchWrapper>         
         <NavItem className="right">登录</NavItem>

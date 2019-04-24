@@ -1,9 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper } from './style';
+import { HeaderWrapper, Logo, Nav, NavItem, 
+  NavSearch, Addition, Button, SearchWrapper,
+   SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchInfoList, SearchInfoItem } from './style';
 import { Icon } from '../../statics/iconfont/iconfont.js';
 import { actionCreators } from './store'
+
+const getListArea = (show) => {
+  if (show) {
+    return (
+      <SearchInfo>
+          <SearchInfoTitle>热门搜索
+            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+          </SearchInfoTitle>
+          <SearchInfoList>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+            <SearchInfoItem>教育</SearchInfoItem>
+          </SearchInfoList>
+        </SearchInfo>
+    )
+  } else {
+    return null
+  }
+}
 
 const Header = (props) => {
   return(
@@ -24,6 +50,7 @@ const Header = (props) => {
           ></NavSearch> 
         </CSSTransition> 
         <Icon className={props.focused ? 'focused iconfont iconfangdajing' : 'iconfont iconfangdajing'}></Icon> 
+        {getListArea(props.focused)}
       </SearchWrapper>         
       <NavItem className="right">登录</NavItem>
       <NavItem className="right"><Icon className="iconfont iconAa"></Icon></NavItem>

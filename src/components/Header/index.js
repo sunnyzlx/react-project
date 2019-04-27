@@ -5,24 +5,29 @@ import { HeaderWrapper, Logo, Nav, NavItem,
   NavSearch, Addition, Button, SearchWrapper,
    SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchInfoList, SearchInfoItem } from './style';
 import { Icon } from '../../statics/iconfont/iconfont.js';
-import { actionCreators } from './store'
+import { actionCreators } from './store';
 
 
 class Header extends Component {
   getListArea() {
 
     // 使用解构赋值使代码更整洁
-    const { focused, list } = this.props;
-    if (focused) {
+    const { focused, list, page, mouseIn } = this.props;
+    const newList = list.toJS();
+    const pageList = [];
+    for (let i = (page - 1) * 10;  i< page * 10; i++ ) {
+      pageList.push(
+        <SearchInfoItem key={i}>{newList[i]}</SearchInfoItem>
+      )
+    }
+    if (focused || mouseIn) {
       return (
         <SearchInfo>
             <SearchInfoTitle>热门搜索
               <SearchInfoSwitch>换一批</SearchInfoSwitch>
             </SearchInfoTitle>
             <SearchInfoList>
-              { list.map((item) => {
-                return (<SearchInfoItem key={item}>{item}</SearchInfoItem>)
-              })}  
+              {pageList}
             </SearchInfoList>
           </SearchInfo>
       )
@@ -32,14 +37,14 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, handleInputFocus, handleInputBlur} = this.props;
+    const { focused, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave } = this.props;
     return(
       <HeaderWrapper>
       <Logo></Logo>
       <Nav>
         <NavItem className="left active">首页</NavItem>
         <NavItem className="left">下载App</NavItem> 
-        <SearchWrapper>
+        <SearchWrapper onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <CSSTransition
             in={focused}
             timeout={200}
@@ -68,7 +73,9 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', 'focused']),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page']),
+    mouseIn: state.getIn(['header', 'mouseIn'])
   }
 }
 
@@ -77,10 +84,17 @@ const mapDispatchToProps = (dispatch) => {
     handleInputFocus() {
       dispatch(actionCreators.getList())
       dispatch(actionCreators.searchFocus())
+      dispatch(actionCreators.mouseEnter())
     },
     handleInputBlur() {
       dispatch(actionCreators.searchBlur())
-    }
+    },
+    handleMouseEnter() {
+      // dispatch(actionCreators.mouseEnter()) 
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave())
+    },
   }
 }
 

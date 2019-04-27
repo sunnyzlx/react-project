@@ -5,7 +5,8 @@ import { fromJS } from 'immutable';
 // 给自己用的
 const changeSearchList = (data) => ({
   type: actionTypes.SEARCH_LIST,
-  data: fromJS(data)
+  data: fromJS(data),
+  totalPage: Math.ceil(data.length / 10)
 })
 
 // 需要导出的
@@ -15,6 +16,14 @@ const searchFocus = () => ({
 
 const searchBlur = () => ({
   type: actionTypes.SEARCH_BLUR
+})
+
+const mouseEnter = () => ({
+  type: actionTypes.MOUSE_IN
+})
+
+const mouseLeave = () => ({
+  type: actionTypes.MOUSE_OUT
 })
 
 const getList = () => {
@@ -31,5 +40,7 @@ const getList = () => {
 export {
   searchFocus,
   searchBlur,
-  getList
+  getList,
+  mouseEnter,
+  mouseLeave
 }

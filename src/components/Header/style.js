@@ -110,6 +110,13 @@ export const SearchInfoTitle = styled.div`
   line-height: 20px;
   font-size: 14px;
   color: #969696;
+  .huan {
+    display: block;
+    margin-right: 50px;
+    font-size: 16px;
+    transition: all .2s ease-in;
+    transfrom-origin: center center;
+  }
 `
 
 export const SearchInfoSwitch = styled.span`

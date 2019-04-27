@@ -26,6 +26,11 @@ const mouseLeave = () => ({
   type: actionTypes.MOUSE_OUT
 })
 
+const changeList = (page) => ({
+  type: actionTypes.CHANGE_LIST,
+  page
+})
+
 const getList = () => {
   return (dispatch) => {
     axios.get('/api/headerList.json').then((res) => {
@@ -42,5 +47,6 @@ export {
   searchBlur,
   getList,
   mouseEnter,
-  mouseLeave
+  mouseLeave,
+  changeList
 }

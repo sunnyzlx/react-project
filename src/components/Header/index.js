@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import { HeaderWrapper, Logo, Nav, NavItem, 
   NavSearch, Addition, Button, SearchWrapper,
-   SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchInfoList, SearchInfoItem } from './style';
+   SearchInfo, SearchInfoTitle, SearchInfoSwitch, 
+   SearchInfoList, SearchInfoItem } from './style';
 import { Icon } from '../../statics/iconfont/iconfont.js';
 import { actionCreators } from './store';
 
@@ -12,7 +13,7 @@ class Header extends Component {
   getListArea() {
 
     // 使用解构赋值使代码更整洁
-    const { focused, list, page, mouseIn } = this.props;
+    const { focused, list, page, totalPage, mouseIn, handleChangeList } = this.props;
     const newList = list.toJS();
     const pageList = [];
     for (let i = (page - 1) * 10;  i< page * 10; i++ ) {
@@ -24,7 +25,7 @@ class Header extends Component {
       return (
         <SearchInfo>
             <SearchInfoTitle>热门搜索
-              <SearchInfoSwitch>换一批</SearchInfoSwitch>
+              <SearchInfoSwitch onClick={() => handleChangeList(page, totalPage)}>换一批</SearchInfoSwitch>
             </SearchInfoTitle>
             <SearchInfoList>
               {pageList}
@@ -75,6 +76,7 @@ const mapStateToProps = (state) => {
     focused: state.getIn(['header', 'focused']),
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage']),
     mouseIn: state.getIn(['header', 'mouseIn'])
   }
 }
@@ -95,6 +97,14 @@ const mapDispatchToProps = (dispatch) => {
     handleMouseLeave() {
       dispatch(actionCreators.mouseLeave())
     },
+    handleChangeList(page, totalPage) {
+      if (page < totalPage) {
+        dispatch(actionCreators.changeList(page+1))
+      } else {
+        dispatch(actionCreators.changeList(1))
+      }
+      
+    }
   }
 }
 

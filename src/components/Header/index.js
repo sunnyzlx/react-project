@@ -11,13 +11,12 @@ import { actionCreators } from './store';
 
 class Header extends Component {
   getListArea() {
-
     // 使用解构赋值使代码更整洁
     const { focused, list, page, totalPage, mouseIn, handleChangeList } = this.props;
     const newList = list.toJS();
     const pageList = [];
     for (let i = (page - 1) * 10;  i< page * 10; i++ ) {
-      pageList.push(
+      (newList[i]!==undefined) && pageList.push(
         <SearchInfoItem key={i}>{newList[i]}</SearchInfoItem>
       )
     }
@@ -26,7 +25,7 @@ class Header extends Component {
         <SearchInfo>
             <SearchInfoTitle>热门搜索
               <SearchInfoSwitch onClick={() => handleChangeList(page, totalPage, this.spinIcon)}>
-              <Icon ref={(icon) => this.spinIcon = icon} className="iconfont huan">&#xe65f;</Icon>
+              <Icon ref={(icon) => this.spinIcon = icon} className="iconfont huan iconhuanyihuan"></Icon>
               换一批</SearchInfoSwitch>
             </SearchInfoTitle>
             <SearchInfoList>
@@ -40,7 +39,7 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave } = this.props;
+    const { focused, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave, list } = this.props;
     return(
       <HeaderWrapper>
       <Logo></Logo>
@@ -54,17 +53,17 @@ class Header extends Component {
             classNames="slide"
           >
             <NavSearch className={focused ? 'focused' : ''}
-              onFocus={handleInputFocus}
+              onFocus={ () => handleInputFocus(list) }
               onBlur={handleInputBlur}
             ></NavSearch> 
           </CSSTransition> 
-          <Icon className={focused ? 'focused iconfont' : 'iconfont'}>&#xe60b;</Icon> 
+          <Icon className={focused ? 'focused iconfont iconsousuo' : 'iconfont iconsousuo'}>&#xe60b;</Icon> 
           {this.getListArea()}
         </SearchWrapper>         
         <NavItem className="right">登录</NavItem>
         <NavItem className="right"><Icon className="iconfont iconAa"></Icon></NavItem>
         <Addition>
-          <Button className="writting"><Icon className="iconfont iconicon-checkin"></Icon>写文章</Button>
+          <Button className="writting"><Icon className="iconfont iconqianbi"></Icon>写文章</Button>
           <Button className="reg">注册</Button>
         </Addition>
       </Nav> 
@@ -85,8 +84,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus() {
-      dispatch(actionCreators.getList())
+    handleInputFocus(list) {
+    (list.size===0) && dispatch(actionCreators.getList())
       dispatch(actionCreators.searchFocus())
       dispatch(actionCreators.mouseEnter())
     },
@@ -100,7 +99,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.mouseLeave())
     },
     handleChangeList(page, totalPage, spinIcon) {
-      console.log('111  '+spinIcon.style.transfrom)
       let originAngle;
       if (spinIcon.style.transfrom!==undefined) {
         originAngle = spinIcon.style.transfrom.replace(/[^0-9]/ig, '');

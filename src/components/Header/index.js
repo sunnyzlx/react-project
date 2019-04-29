@@ -8,7 +8,6 @@ import { HeaderWrapper, Logo, Nav, NavItem,
 import { Icon } from '../../statics/iconfont/iconfont.js';
 import { actionCreators } from './store';
 
-
 class Header extends Component {
   getListArea() {
     // 使用解构赋值使代码更整洁

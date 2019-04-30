@@ -1,45 +1,20 @@
 import { fromJS } from 'immutable';
+import  * as actionTypes from './actionTypes';
 
 const defaultState = fromJS({
-  topicList: [{
-		id: 1,
-		title: '社会热点',
-		imgUrl: '//upload.jianshu.io/admin_banners/web_images/4653/d63edcaf954eced9ed5f9ad5ed6904f71c04edf4.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'
-	},{
-		id: 2,
-		title: '社会热点',
-		imgUrl: '//upload.jianshu.io/admin_banners/web_images/4653/d63edcaf954eced9ed5f9ad5ed6904f71c04edf4.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'
-	}],
-	articleList: [
-		{
-			id: 1,
-			title: '大龄码农是如何把自己逼死的',
-			desc: '引子 小C由于学习成绩不好，高中毕业没有考上大学，找了一份业务员的工作匆匆开始了职业生涯。混了两年，业绩一直上不去，在家人的建议下，去了一家高职...',
-			imgUrl: '//upload-images.jianshu.io/upload_images/2289219-6837362e57aaa3d1?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
-		},
-		{
-			id: 2,
-			title: '大龄码农是如何把自己逼死的',
-			desc: '引子 小C由于学习成绩不好，高中毕业没有考上大学，找了一份业务员的工作匆匆开始了职业生涯。混了两年，业绩一直上不去，在家人的建议下，去了一家高职...',
-			imgUrl: '//upload-images.jianshu.io/upload_images/2289219-6837362e57aaa3d1?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
-		},
-		{
-			id: 3,
-			title: '大龄码农是如何把自己逼死的',
-			desc: '引子 小C由于学习成绩不好，高中毕业没有考上大学，找了一份业务员的工作匆匆开始了职业生涯。混了两年，业绩一直上不去，在家人的建议下，去了一家高职...',
-			imgUrl: '//upload-images.jianshu.io/upload_images/2289219-6837362e57aaa3d1?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
-		},
-		{
-			id: 4,
-			title: '大龄码农是如何把自己逼死的',
-			desc: '引子 小C由于学习成绩不好，高中毕业没有考上大学，找了一份业务员的工作匆匆开始了职业生涯。混了两年，业绩一直上不去，在家人的建议下，去了一家高职...',
-			imgUrl: '//upload-images.jianshu.io/upload_images/2289219-6837362e57aaa3d1?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
-		}
-	]
+  topicList: [],
+	articleList: [],
+	recommendList: []
 })
 
 export default (state = defaultState, action) => {
   switch(action.type)  {
+		case actionTypes.GET_HOME_DATA:
+		  return state.merge({
+				topicList: action.topicList,
+				articleList: action.articleList,
+				recommendList: action.recommendList
+			}) 
     default:
       return state;
   }

@@ -82,3 +82,26 @@ export const ListInfo = styled.div`
     color: #999;
   }
 `
+
+// recommend
+export const RecommendWrapper = styled.div`
+  width: 240px;
+  margin: 30px 0;
+`
+
+export const RecommendItem = styled.div`
+  width: 240px;
+  height: 46px;
+  background: url(${(props) => props.imgUrl});
+  background-size: contain;
+`
+
+// writer
+export const WriterWrapper = styled.div`
+  width: 238px;
+  height: 300px;
+  line-height: 300px;
+  text-align: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+`

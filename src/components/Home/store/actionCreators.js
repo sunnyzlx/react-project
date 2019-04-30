@@ -10,6 +10,12 @@ const changeHomeData = (data) => ({
   recommendList: fromJS(data.recommendList)
 })
 
+const addMoreList = (data, page) => ({
+  type: actionTypes.ADD_MORE_DATA,
+  articleList: fromJS(data),
+  page
+})
+
 // 需导出
 const getHomeData = () => {
   return (dispatch) => {
@@ -20,4 +26,13 @@ const getHomeData = () => {
   }
 }
 
-export { getHomeData }
+const getMoreList = (page) => {
+  return (dispatch) => {
+    axios.get('api/listData.json?page='+page).then(res => {
+      const data = res.data.data;
+      dispatch(addMoreList(data, page++));
+    })
+  }
+}
+
+export { getHomeData, getMoreList }

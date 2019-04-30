@@ -18,7 +18,6 @@ class Home extends Component {
           <Writer></Writer>        
         </HomeRight>
       </HomeWrapper>
-
     );
   }
 

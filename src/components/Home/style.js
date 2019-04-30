@@ -105,3 +105,16 @@ export const WriterWrapper = styled.div`
   border: 1px solid #dcdcdc;
   border-radius: 3px;
 `
+
+// 加载更多
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: 30px 0;
+  background: #a5a5a5;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+`

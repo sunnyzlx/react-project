@@ -4,7 +4,8 @@ import  * as actionTypes from './actionTypes';
 const defaultState = fromJS({
   topicList: [],
 	articleList: [],
-	recommendList: []
+	recommendList: [],
+	articlePage: 1
 })
 
 export default (state = defaultState, action) => {
@@ -15,6 +16,11 @@ export default (state = defaultState, action) => {
 				articleList: action.articleList,
 				recommendList: action.recommendList
 			}) 
+		case actionTypes.ADD_MORE_DATA:
+		  return state.merge({
+				articleList: state.get('articleList').concat(action.articleList),
+				articlePage: action.page
+			})
     default:
       return state;
   }

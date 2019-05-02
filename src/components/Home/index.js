@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { HomeWrapper, HomeLeft, HomeRight  } from './style';
 import { List, Recommend, Topic, Writer } from './Component';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
 import { BackTop } from './style';
 
-class Home extends Component {
+class Home extends PureComponent {
   handdleScrollTop() {
     window.scrollTo(0, 0);
   }

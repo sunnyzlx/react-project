@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import { HeaderWrapper, Logo, Nav, NavItem, 
@@ -7,8 +7,9 @@ import { HeaderWrapper, Logo, Nav, NavItem,
    SearchInfoList, SearchInfoItem } from './style';
 import { Icon } from '../../statics/iconfont/iconfont.js';
 import { actionCreators } from './store';
-
-class Header extends Component {
+import { Link } from 'react-router-dom';
+ 
+class Header extends PureComponent {
   getListArea() {
     // 使用解构赋值使代码更整洁
     const { focused, list, page, totalPage, mouseIn, handleChangeList } = this.props;
@@ -41,7 +42,9 @@ class Header extends Component {
     const { focused, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave, list } = this.props;
     return(
       <HeaderWrapper>
-      <Logo></Logo>
+      <Link to="/">
+        <Logo></Logo>
+      </Link>
       <Nav>
         <NavItem className="left active">首页</NavItem>
         <NavItem className="left">下载App</NavItem> 

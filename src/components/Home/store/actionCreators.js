@@ -26,6 +26,11 @@ const getHomeData = () => {
   }
 }
 
+const toggleScrollTopShow = (show) => ({
+  type: actionTypes.TOGGLE_SCROLL_TOP,
+  show
+})
+
 const getMoreList = (page) => {
   return (dispatch) => {
     axios.get('api/listData.json?page='+page).then(res => {
@@ -35,4 +40,4 @@ const getMoreList = (page) => {
   }
 }
 
-export { getHomeData, getMoreList }
+export { getHomeData, getMoreList, toggleScrollTopShow }

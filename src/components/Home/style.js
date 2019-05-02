@@ -118,3 +118,18 @@ export const LoadMore = styled.div`
   color: #fff;
   cursor: pointer;
 `
+
+// 回到顶部
+export const BackTop = styled.div`
+  position: fixed;
+  right: 100px;
+  bottom: 60px;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+`
+

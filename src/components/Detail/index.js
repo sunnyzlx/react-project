@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DetailWrapper, Header, Content } from './style';
 import { connect } from 'react-redux';
+import { actionCreators } from './store';
 
 class Detail extends Component {
   render() {
@@ -12,6 +13,11 @@ class Detail extends Component {
       </DetailWrapper>
     )
   }
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.props.getDetail(id)
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -21,4 +27,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Detail);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getDetail(id) {
+      dispatch(actionCreators.getDetail(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

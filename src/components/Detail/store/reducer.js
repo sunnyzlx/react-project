@@ -2,12 +2,17 @@ import { fromJS } from 'immutable';
 import  * as actionTypes from './actionTypes';
 
 const defaultState = fromJS({
-  title: '衡水中学，被外地人占领的高考工厂',
-  content: '<img alt="" src="https://upload-images.jianshu.io/upload_images/15598475-a74b3dc63cb0d2fe.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/561/format/webp"></img><p><b>前段时间走亲串友，看到表妹瘦了一大圈，</b>就问她是怎么瘦的，她把自己经常吃的瘦身食材给我说了。回来逛菜场，果然发现了这个菜，我从来没买过，一部手机住家创业，转发分享就秒结到账，轻松月入过万，了解微信壹伍零叁伍肆壹玖七肆伍，没吃过的食材，竟然可以减肥，于是就抱着试试的态度，买了些回来做了菜。</p><p>前段时间走亲串友，看到表妹瘦了一大圈，就问她是怎么瘦的，她把自己经常吃的瘦身食材给我说了。回来逛菜场，果然发现了这个菜，我从来没买过，一部手机住家创业，转发分享就秒结到账，轻松月入过万，了解微信壹伍零叁伍肆壹玖七肆伍，没吃过的食材，竟然可以减肥，于是就抱着试试的态度，买了些回来做了菜。</p><p>前段时间走亲串友，看到表妹瘦了一大圈，就问她是怎么瘦的，她把自己经常吃的瘦身食材给我说了。回来逛菜场，果然发现了这个菜，我从来没买过，一部手机住家创业，转发分享就秒结到账，轻松月入过万，了解微信壹伍零叁伍肆壹玖七肆伍，没吃过的食材，竟然可以减肥，于是就抱着试试的态度，买了些回来做了菜。</p><p>前段时间走亲串友，看到表妹瘦了一大圈，就问她是怎么瘦的，她把自己经常吃的瘦身食材给我说了。回来逛菜场，果然发现了这个菜，我从来没买过，一部手机住家创业，转发分享就秒结到账，轻松月入过万，了解微信壹伍零叁伍肆壹玖七肆伍，没吃过的食材，竟然可以减肥，于是就抱着试试的态度，买了些回来做了菜。</p>'
+  title: '',
+  content: ''
 })
 
 export default (state = defaultState, action) => {
   switch(action.type)  {
+      case actionTypes.CHANGE_DETAIL_DATA:
+        return state.merge({
+          title: action.title,
+          content: action.content
+        });
     default:
       return state;
   }

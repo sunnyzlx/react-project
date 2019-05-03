@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from '../Header';
 import Home from '../Home';
 import Detail from '../Detail';
+import Login from '../Login';
 import { GlobalStyle } from '../../style';
 
 class App extends PureComponent {
@@ -17,6 +18,7 @@ class App extends PureComponent {
               <Header></Header>
               <Route path="/" exact component={Home}></Route>
               <Route path="/detail/:id" exact component={Detail}></Route>
+              <Route path="/login" exact component={Login}></Route>
             </BrowserRouter>
           </Provider>
       </Fragment>   

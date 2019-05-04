@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from '../Header';
 import Home from '../Home';
-import Detail from '../Detail';
+import Detail from '../Detail/loadable';
 import Login from '../Login';
 import Write from '../Write';
 import { GlobalStyle } from '../../style';

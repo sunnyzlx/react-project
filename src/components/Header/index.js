@@ -7,6 +7,7 @@ import { HeaderWrapper, Logo, Nav, NavItem,
    SearchInfoList, SearchInfoItem } from './style';
 import { Icon } from '../../statics/iconfont/iconfont.js';
 import { actionCreators } from './store';
+import { actionCreators as loginActionCreators } from '../Login/store';
 import { Link } from 'react-router-dom';
  
 class Header extends PureComponent {
@@ -39,7 +40,7 @@ class Header extends PureComponent {
   }
 
   render() {
-    const { focused, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave, list } = this.props;
+    const { focused, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave, list, login, handleLogout } = this.props;
     return(
       <HeaderWrapper>
       <Link to="/">
@@ -62,7 +63,7 @@ class Header extends PureComponent {
           <Icon className={focused ? 'focused iconfont iconsousuo' : 'iconfont iconsousuo'}>&#xe60b;</Icon> 
           {this.getListArea()}
         </SearchWrapper>         
-        <NavItem className="right">登录</NavItem>
+        { login ? <NavItem onClick={handleLogout} className="right">退出</NavItem> : <Link to="/login"><NavItem className="right">登录</NavItem></Link>}
         <NavItem className="right"><Icon className="iconfont iconAa"></Icon></NavItem>
         <Addition>
           <Button className="writting"><Icon className="iconfont iconqianbi"></Icon>写文章</Button>
@@ -80,7 +81,8 @@ const mapStateToProps = (state) => {
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     totalPage: state.getIn(['header', 'totalPage']),
-    mouseIn: state.getIn(['header', 'mouseIn'])
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    login: state.getIn(['login', 'login'])
   }
 }
 
@@ -113,8 +115,11 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actionCreators.changeList(page+1))
       } else {
         dispatch(actionCreators.changeList(1))
-      }
-      
+      } 
+    },
+    handleLogout() {
+      console.log(789)
+      dispatch(loginActionCreators.logout())
     }
   }
 }

@@ -6,6 +6,7 @@ import Header from '../Header';
 import Home from '../Home';
 import Detail from '../Detail';
 import Login from '../Login';
+import Write from '../Write';
 import { GlobalStyle } from '../../style';
 
 class App extends PureComponent {
@@ -19,6 +20,7 @@ class App extends PureComponent {
               <Route path="/" exact component={Home}></Route>
               <Route path="/detail/:id" exact component={Detail}></Route>
               <Route path="/login" exact component={Login}></Route>
+              <Route path="/write" exact component={Write}></Route>
             </BrowserRouter>
           </Provider>
       </Fragment>   

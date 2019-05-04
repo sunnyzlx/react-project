@@ -66,7 +66,7 @@ class Header extends PureComponent {
         { login ? <NavItem onClick={handleLogout} className="right">退出</NavItem> : <Link to="/login"><NavItem className="right">登录</NavItem></Link>}
         <NavItem className="right"><Icon className="iconfont iconAa"></Icon></NavItem>
         <Addition>
-          <Button className="writting"><Icon className="iconfont iconqianbi"></Icon>写文章</Button>
+          <Link to="/write"><Button className="writting"><Icon className="iconfont iconqianbi"></Icon>写文章</Button></Link>
           <Button className="reg">注册</Button>
         </Addition>
       </Nav> 
@@ -117,8 +117,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actionCreators.changeList(1))
       } 
     },
-    handleLogout() {
-      console.log(789)
+    handleLogout() { 
       dispatch(loginActionCreators.logout())
     }
   }
